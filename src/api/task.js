@@ -15,3 +15,7 @@ export function getTasks() {
 export function getTaskByID(taskID) {
   return api.get(`/tasks/${taskID}`);
 }
+
+export function deleteTask(taskID) {
+  return api.delete(`/tasks/${taskID}`);
+}

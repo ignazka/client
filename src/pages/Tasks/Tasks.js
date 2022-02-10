@@ -2,12 +2,17 @@ import React from 'react';
 import { getTasks } from '../../api';
 import { useFetch } from '../../hooks';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { deleteTask } from '../../api';
 
 function Tasks() {
-  const { data, loading, error } = useFetch(getTasks);
+  const { data, loading, error } = useFetch(() => getTasks(), [getTasks()]);
   const [state, setState] = React.useState(data);
 
+  const handleClick = ({ target }) => {
+    deleteTask(target.value);
+    setState(data);
+  };
   return (
     <div className='ctn-task'>
       {data?.map(task => (
@@ -22,6 +27,9 @@ function Tasks() {
                 details{' '}
               </Button>
             </Link>
+            <Button onClick={handleClick} value={task._id}>
+              Delete
+            </Button>
           </div>
         </div>
       ))}
