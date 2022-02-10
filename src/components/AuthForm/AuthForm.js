@@ -22,42 +22,44 @@ function AuthForm({ onSubmit, submitMessage, buttonColor }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className='mb-3'>
-        <Form.Label htmlFor='email'>Email</Form.Label>
-        <Form.Control
-          type='email'
-          name='email'
-          placeholder='example@email.com'
-          value={state.email}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Form.Group className='mb-3'>
-        <Form.Label htmlFor='password'>Password</Form.Label>
-        <Form.Control
-          type='password'
-          name='password'
-          placeholder='********'
-          value={state.password}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Button type='submit' variant={buttonColor}>
-        {submitMessage}
-      </Button>
-      {submitMessage === 'login' ? (
-        <p>
-          Do not have an Account? <Link to={ROUTES.signup}>Signup</Link>
-        </p>
-      ) : (
-        <p>
-          Already have an Account? <Link to={ROUTES.login}>Login</Link>
-        </p>
-      )}
-    </Form>
+    <div className='ctn-form'>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className='mb-3'>
+          <Form.Label htmlFor='email'>Email</Form.Label>
+          <Form.Control
+            type='email'
+            name='email'
+            placeholder='example@email.com'
+            value={state.email}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <Form.Group className='mb-3'>
+          <Form.Label htmlFor='password'>Password</Form.Label>
+          <Form.Control
+            type='password'
+            name='password'
+            placeholder='********'
+            value={state.password}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <Button className='mt-3' type='submit' size='lg' variant={buttonColor}>
+          {submitMessage}
+        </Button>
+        {submitMessage === 'login' ? (
+          <p>
+            Do not have an Account? <Link to={ROUTES.signup}>Signup</Link>
+          </p>
+        ) : (
+          <p>
+            Already have an Account? <Link to={ROUTES.login}>Login</Link>
+          </p>
+        )}
+      </Form>
+    </div>
   );
 }
 
